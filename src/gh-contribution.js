@@ -3,14 +3,14 @@ import {
     getOppositeColor,
     getSampleContribution,
     getUserContributions,
-} from "../utils/github.js";
+} from "./utils/github.js";
 import fs from "fs";
 
 const init = async () => {
-    // const contributions = await getUserContributions("imf4isal");
-    const contributions = await getSampleContribution(
-        "contributions-sample.json"
-    );
+    const contributions = await getUserContributions("rifatNR");
+    // const contributions = await getSampleContribution(
+    //     "contributions-sample.json"
+    // );
 
     const weeklyContribution =
         contributions.data.user.contributionsCollection.contributionCalendar

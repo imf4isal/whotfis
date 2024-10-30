@@ -8,7 +8,7 @@
     },
     "scripts": {
         "start": "node ./src/main.js",
-        "exp": "node ./src/experiment/exp01.js"
+        "gh": "node ./src/gh-contribution.js"
     },
     "type": "module",
     "dependencies": {

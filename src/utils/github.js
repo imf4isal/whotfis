@@ -36,7 +36,7 @@ export const getUserContributions = async (username) => {
     });
 
     const data = await response.json();
-    console.dir(data, { depth: null });
+    // console.dir(data, { depth: null });
     // fs.writeFileSync("contributions-sample.json", JSON.stringify(data));
     return data;
 };
