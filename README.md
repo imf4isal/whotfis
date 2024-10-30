@@ -12,8 +12,10 @@ A CLI tool that displays users' information in terminal. The tool fetches data f
 ## Installation
 
 ```bash
-whothefuckis imf4isal
+npx whotfis <gist-username> (e.g. npx whotfis imf4isal)
 ```
+
+If you don't have a gist username, you can use your GitHub username. By default, the tool will use your GitHub username to fetch the data from your gist.
 
 ## How to Set Up Your Card
 
