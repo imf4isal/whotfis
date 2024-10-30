@@ -1,12 +1,13 @@
 import chalk from "chalk";
 import {
+    getOppositeColor,
     getSampleContribution,
     getUserContributions,
 } from "../utils/github.js";
 import fs from "fs";
 
 const init = async () => {
-    // const contributions = getUserContributions("imf4isal");
+    // const contributions = await getUserContributions("imf4isal");
     const contributions = await getSampleContribution(
         "contributions-sample.json"
     );
@@ -14,6 +15,11 @@ const init = async () => {
     const weeklyContribution =
         contributions.data.user.contributionsCollection.contributionCalendar
             .weeks;
+
+    if (!weeklyContribution) {
+        console.log("ERROR: Contribution not found.");
+        return;
+    }
 
     let formattedWeeklyContribution = {
         _1: [],
@@ -40,7 +46,8 @@ const init = async () => {
         const week = value;
         let chart = "";
         week.forEach((day) => {
-            chart = chart + " " + chalk.hex(day?.color ?? "#00000000")("■");
+            const color = day?.contributionCount > 0 ? day?.color : "#292929";
+            chart = chart + " " + chalk.hex(color ?? "#00000000")("■");
         });
         console.log(chart);
     });

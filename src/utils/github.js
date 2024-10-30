@@ -1,5 +1,6 @@
 import "dotenv/config";
 import fs from "fs";
+import Color from "color";
 
 export const getUserContributions = async (username) => {
     const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN;
@@ -35,7 +36,7 @@ export const getUserContributions = async (username) => {
     });
 
     const data = await response.json();
-    // console.dir(data, { depth: null });
+    console.dir(data, { depth: null });
     // fs.writeFileSync("contributions-sample.json", JSON.stringify(data));
     return data;
 };
@@ -49,4 +50,9 @@ export const getSampleContribution = async (filePath) => {
         console.error("Error reading settings JSON file: ", err);
         return null;
     }
+};
+
+export const getOppositeColor = (hex) => {
+    const color = Color(hex);
+    return color.isLight() ? color.darken(0.5).hex() : color.lighten(0.5).hex();
 };
