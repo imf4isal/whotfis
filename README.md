@@ -6,7 +6,7 @@ A CLI tool that displays users' information in terminal. The tool fetches data f
 
 1. Go to https://gist.github.com/
 2. Create a new gist
-3. Name the file as `wtfis.json`
+3. Name the file as `whotfis.json`
 4. Add your information in JSON format
 
 ## Installation
