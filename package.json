@@ -1,18 +1,18 @@
 {
-    "name": "whotfis",
-    "version": "1.0.5",
-    "description": "A CLI tool to display information about a person in the terminal.",
-    "main": "src/main.js",
-    "bin": {
-        "whotfis": "./src/main.js"
-    },
-    "type": "module",
-    "dependencies": {
-        "boxen": "^7.1.1",
-        "chalk": "^5.3.0",
-        "jsonresume-theme-even": "^0.23.0",
-        "node-fetch": "^3.3.2",
-        "open": "^10.1.0",
-        "resumed": "^4.0.0"
-    }
+  "name": "whotfis",
+  "version": "1.0.6",
+  "description": "A CLI tool to display information about a person in the terminal.",
+  "main": "src/main.js",
+  "bin": {
+    "whotfis": "./src/main.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
+    "jsonresume-theme-even": "^0.23.0",
+    "node-fetch": "^3.3.2",
+    "open": "^10.1.0",
+    "resumed": "^4.0.0"
+  }
 }

@@ -19,6 +19,9 @@ if (!username) {
 }
 
 const GISTS_URL = `https://api.github.com/users/${username}/gists`;
+const PUBLIC_INFORMATION_URL = `https://api.github.com/users/${username}`;
+
+let isGistAvailable = true;
 
 async function fetchData() {
   try {
@@ -34,7 +37,43 @@ async function fetchData() {
     );
 
     if (!whotfisGist) {
-      throw new Error(`No whotfis.json found for user ${username}`);
+      isGistAvailable = false;
+      const publicResponse = await fetch(PUBLIC_INFORMATION_URL);
+      const publicInfo = await publicResponse.json();
+
+      const overview = {
+        github: publicInfo.html_url,
+      };
+
+      if (publicInfo.email) {
+        overview.email = publicInfo.email;
+      }
+
+      if (publicInfo.bio) {
+        overview.bio = publicInfo.bio;
+      }
+
+      if (publicInfo.blog) {
+        overview.blog = publicInfo.blog;
+      }
+
+      if (publicInfo.twitter_username) {
+        overview.x = `https://x.com/${publicInfo.twitter_username}`;
+      }
+
+      if (publicInfo.location) {
+        overview.location = publicInfo.location;
+      }
+
+      if (publicInfo.company) {
+        overview.company = publicInfo.company;
+      }
+
+      return {
+        name: publicInfo.login,
+        designation: publicInfo.name,
+        overview: overview,
+      };
     }
 
     const whotfisFile = whotfisGist.files["whotfis.json"];
@@ -222,6 +261,19 @@ async function main() {
       float: "center",
     })
   );
+
+  if (!isGistAvailable) {
+    console.log(
+      `${chalk.hex(theme.text)(
+        `Note: The information is fetched from the public profile.`
+      )}
+      \n${chalk.hex(theme.text)(
+        "Customize your profile view by visiting"
+      )} ${chalk
+        .hex(theme.dim)
+        .underline("https://github.com/imf4isal/whotfis")}`
+    );
+  }
 }
 
 main().catch((error) => {
