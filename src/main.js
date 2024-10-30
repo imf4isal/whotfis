@@ -29,16 +29,16 @@ async function fetchData() {
             throw new Error('User not found or API rate limit exceeded');
         }
 
-        const wtfisGist = gists.find(
-            (gist) => gist.files && 'wtfis.json' in gist.files
+        const whotfisGist = gists.find(
+            (gist) => gist.files && 'whotfis.json' in gist.files
         );
 
-        if (!wtfisGist) {
-            throw new Error(`No wtfis.json found for user ${username}`);
+        if (!whotfisGist) {
+            throw new Error(`No whotfis.json found for user ${username}`);
         }
 
-        const wtfisFile = wtfisGist.files['wtfis.json'];
-        const contentResponse = await fetch(wtfisFile.raw_url);
+        const whotfisFile = whotfisGist.files['whotfis.json'];
+        const contentResponse = await fetch(whotfisFile.raw_url);
         const data = await contentResponse.json();
 
         return data;
