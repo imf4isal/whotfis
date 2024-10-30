@@ -21,7 +21,8 @@ If you don't have a gist username, you can use your GitHub username. By default,
 
 1. Create a new Gist on GitHub (https://gist.github.com)
 2. Name the file `whotfis.json`
-3. Add your information in JSON format
+3. Make the `whotfis.json` gist file public
+4. Add your information in JSON format
 
 ### Required JSON Structure
 
