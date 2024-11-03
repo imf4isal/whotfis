@@ -1,13 +1,13 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 import {
     getOppositeColor,
     getSampleContribution,
-    getUserContributions,
-} from "./utils/github.js";
-import fs from "fs";
+    fetchGithubContribution,
+} from './utils/github.js';
+import fs from 'fs';
 
-const init = async () => {
-    const contributions = await getUserContributions("rifatNR");
+export default async function getGithubContribution(username) {
+    const contributions = await fetchGithubContribution(username);
     // const contributions = await getSampleContribution(
     //     "contributions-sample.json"
     // );
@@ -17,7 +17,7 @@ const init = async () => {
             .weeks;
 
     if (!weeklyContribution) {
-        console.log("ERROR: Contribution not found.");
+        console.log('ERROR: Contribution not found.');
         return;
     }
 
@@ -42,15 +42,16 @@ const init = async () => {
         formattedWeeklyContribution._7[index] = contributionDays[6];
     });
 
+    let chart = '';
     Object.entries(formattedWeeklyContribution).forEach(([key, value]) => {
         const week = value;
-        let chart = "";
+        let chartRow = '';
         week.forEach((day) => {
-            const color = day?.contributionCount > 0 ? day?.color : "#292929";
-            chart = chart + " " + chalk.hex(color ?? "#00000000")("■");
+            const color = day?.contributionCount > 0 ? day?.color : '#292929';
+            chartRow = chartRow + ' ' + chalk.hex(color ?? '#00000000')('■');
         });
-        console.log(chart);
+        chart = chart + '\n' + chartRow;
     });
-};
 
-init();
+    return chart;
+}

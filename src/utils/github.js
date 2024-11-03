@@ -1,8 +1,8 @@
-import "dotenv/config";
-import fs from "fs";
-import Color from "color";
+import 'dotenv/config';
+import fs from 'fs';
+import Color from 'color';
 
-export const getUserContributions = async (username) => {
+export const fetchGithubContribution = async (username) => {
     const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN;
 
     const query = `
@@ -26,10 +26,10 @@ export const getUserContributions = async (username) => {
 
     const variables = { username };
 
-    const response = await fetch("https://api.github.com/graphql", {
-        method: "POST",
+    const response = await fetch('https://api.github.com/graphql', {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${GITHUB_ACCESS_TOKEN}`,
         },
         body: JSON.stringify({ query, variables }),
@@ -43,11 +43,11 @@ export const getUserContributions = async (username) => {
 
 export const getSampleContribution = async (filePath) => {
     try {
-        const data = fs.readFileSync(filePath, "utf-8");
+        const data = fs.readFileSync(filePath, 'utf-8');
         const jsonData = JSON.parse(data);
         return jsonData;
     } catch (err) {
-        console.error("Error reading settings JSON file: ", err);
+        console.error('Error reading settings JSON file: ', err);
         return null;
     }
 };
