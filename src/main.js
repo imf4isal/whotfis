@@ -349,7 +349,6 @@ async function main() {
     let output = `${chalk.hex(theme.primary)(ascii)}
 
 
-    ${chalk.hex(theme.text).bold(contributions)}
     ${chalk.hex(theme.text).bold('$ whoami')}
     ${chalk.hex(theme.secondary)(data.designation)}`;
 
@@ -357,6 +356,11 @@ async function main() {
         if (key === 'name' || key === 'designation') continue;
         output += generateSection(key, value);
     }
+
+    output += `\n\n    ${chalk.hex(theme.text).bold('$ github contributions')}
+    ${' '.repeat(4)}${chalk.hex(theme.text).bold(contributions)}${' '.repeat(
+        4
+    )}`;
 
     output += `\n\n\n    ${chalk.hex(theme.dim)(
         '// Thanks for checking out!'

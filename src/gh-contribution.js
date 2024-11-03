@@ -42,14 +42,18 @@ export default async function getGithubContribution(username) {
         formattedWeeklyContribution._7[index] = contributionDays[6];
     });
 
+    const leftPadding = ' '.repeat(4);
+    const rightPadding = ' '.repeat(4);
+
     let chart = '';
     Object.entries(formattedWeeklyContribution).forEach(([key, value]) => {
         const week = value;
-        let chartRow = '';
+        let chartRow = leftPadding;
         week.forEach((day) => {
             const color = day?.contributionCount > 0 ? day?.color : '#292929';
             chartRow = chartRow + ' ' + chalk.hex(color ?? '#00000000')('■');
         });
+        chartRow += rightPadding;
         chart = chart + '\n' + chartRow;
     });
 
